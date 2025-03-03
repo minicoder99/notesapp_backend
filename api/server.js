@@ -18,7 +18,7 @@ db.serialize(() => {
   db.run("CREATE TABLE notes (id INTEGER PRIMARY KEY, title TEXT, content TEXT, category TEXT)");
 });
 
-/*app.post('/api/notes', async (req, res) => {
+app.post('/api/notes', async (req, res) => {
   const { title, content } = req.body;
 
   if (!title || !content) {
@@ -131,8 +131,9 @@ async function categorizeNoteContent(content) {
     throw new Error('Failed to categorize content');
   }
 }
-*/
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
 module.exports = app; // Export app for testing
