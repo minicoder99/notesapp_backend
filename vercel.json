@@ -8,7 +8,7 @@
     ],
     "routes": [
       {
-        "src": "/(.*)",
+        "src": "/notes(.*)",
         "dest": "notesapp_backend/api/server.js"
       }
     ]
