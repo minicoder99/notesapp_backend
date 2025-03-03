@@ -18,7 +18,7 @@ db.serialize(() => {
   db.run("CREATE TABLE notes (id INTEGER PRIMARY KEY, title TEXT, content TEXT, category TEXT)");
 });
 
-app.post('/note/', async (req, res) => {
+app.post('/notes/', async (req, res) => {
   const { title, content } = req.body;
 
   if (!title || !content) {
