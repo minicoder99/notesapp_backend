@@ -8,7 +8,7 @@
     ],
     "routes": [
       {
-        "src": "/notes/(.*)",
+        "src": "/notes(.*)",
         "dest": "api/server.js"
       }
     ]
