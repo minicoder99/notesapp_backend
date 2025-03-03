@@ -2,14 +2,14 @@
     "version": 2,
     "builds": [
       {
-        "src": "noteapp_backend/api/server.js",
+        "src": "notesapp_backend/api/server.js",
         "use": "@vercel/node"
       }
     ],
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "noteapp_backend/api/server.js"
+        "dest": "notesapp_backend/api/server.js"
       }
     ]
   }
