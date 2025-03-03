@@ -18,7 +18,7 @@ db.serialize(() => {
   db.run("CREATE TABLE notes (id INTEGER PRIMARY KEY, title TEXT, content TEXT, category TEXT)");
 });
 
-app.post('/api/notes', async (req, res) => {
+app.post('/notes', async (req, res) => {
   const { title, content } = req.body;
 
   if (!title || !content) {
@@ -40,7 +40,7 @@ app.post('/api/notes', async (req, res) => {
 
 
 // Edit a note
-app.get('/api/notes/:id', (req, res) => {
+app.get('/notes/:id', (req, res) => {
   const noteId = req.params.id;
   db.get("SELECT * FROM notes WHERE id = ?", [noteId], (err, row) => {
     if (err) {
@@ -102,7 +102,7 @@ app.get('/api/notes/search', (req, res) => {
 });
 
 // View all notes
-app.get('/api/notes', (req, res) => {
+app.get('/notes', (req, res) => {
   db.all("SELECT * FROM notes", [], (err, rows) => {
     if (err) {
       return res.status(500).json({ error: err.message });
