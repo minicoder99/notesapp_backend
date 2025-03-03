@@ -18,7 +18,7 @@ db.serialize(() => {
   db.run("CREATE TABLE notes (id INTEGER PRIMARY KEY, title TEXT, content TEXT, category TEXT)");
 });
 
-app.post('/notes/', async (req, res) => {
+app.post('/', async (req, res) => {
   const { title, content } = req.body;
 
   if (!title || !content) {
@@ -40,7 +40,7 @@ app.post('/notes/', async (req, res) => {
 
 
 // Edit a note
-app.get('/notes/:id', (req, res) => {
+app.get('/:id', (req, res) => {
   const noteId = req.params.id;
   db.get("SELECT * FROM notes WHERE id = ?", [noteId], (err, row) => {
     if (err) {
@@ -54,7 +54,7 @@ app.get('/notes/:id', (req, res) => {
 });
 
 // Endpoint to update a note by ID
-app.put('/notes/:id', (req, res) => {
+app.put('/:id', (req, res) => {
   const noteId = req.params.id;
   const { title, content, category } = req.body;
 
@@ -75,7 +75,7 @@ app.put('/notes/:id', (req, res) => {
 
 
 // Delete a note
-app.delete('/notes/:id', (req, res) => {
+app.delete('/:id', (req, res) => {
   db.run("DELETE FROM notes WHERE id = ?", req.params.id, function(err) {
     if (err) {
       return res.status(500).json({ error: err.message });
@@ -85,7 +85,7 @@ app.delete('/notes/:id', (req, res) => {
 });
 
 // Search notes
-app.get('/notes/search', (req, res) => {
+app.get('/search', (req, res) => {
   const keyword = req.query.keyword;
   console.log(`In serach`);
   if (!keyword) {
@@ -102,7 +102,7 @@ app.get('/notes/search', (req, res) => {
 });
 
 // View all notes
-app.get('/notes/', (req, res) => {
+app.get('/', (req, res) => {
   db.all("SELECT * FROM notes", [], (err, rows) => {
     if (err) {
       return res.status(500).json({ error: err.message });
