@@ -18,7 +18,7 @@ db.serialize(() => {
   db.run("CREATE TABLE notes (id INTEGER PRIMARY KEY, title TEXT, content TEXT, category TEXT)");
 });
 
-app.post('/', async (req, res) => {
+app.post('/note/', async (req, res) => {
   const { title, content } = req.body;
 
   if (!title || !content) {
@@ -102,7 +102,7 @@ app.get('/notes/search', (req, res) => {
 });
 
 // View all notes
-app.get('/', (req, res) => {
+app.get('/notes/', (req, res) => {
   db.all("SELECT * FROM notes", [], (err, rows) => {
     if (err) {
       return res.status(500).json({ error: err.message });
