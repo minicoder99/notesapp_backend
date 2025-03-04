@@ -40,7 +40,7 @@ app.post('/notes', async (req, res) => {
 
 
 // Edit a note
-app.get('/:id', (req, res) => {
+app.get('/notes/:id', (req, res) => {
   const noteId = req.params.id;
   db.get("SELECT * FROM notes WHERE id = ?", [noteId], (err, row) => {
     if (err) {
@@ -54,7 +54,7 @@ app.get('/:id', (req, res) => {
 });
 
 // Endpoint to update a note by ID
-app.put('/:id', (req, res) => {
+app.put('/notes/:id', (req, res) => {
   const noteId = req.params.id;
   const { title, content, category } = req.body;
 
@@ -75,7 +75,7 @@ app.put('/:id', (req, res) => {
 
 
 // Delete a note
-app.delete('/:id', (req, res) => {
+app.delete('/notes/:id', (req, res) => {
   db.run("DELETE FROM notes WHERE id = ?", req.params.id, function(err) {
     if (err) {
       return res.status(500).json({ error: err.message });
@@ -85,7 +85,7 @@ app.delete('/:id', (req, res) => {
 });
 
 // Search notes
-app.get('/search', (req, res) => {
+app.get('/notes/search', (req, res) => {
   const keyword = req.query.keyword;
   console.log(`In serach`);
   if (!keyword) {
